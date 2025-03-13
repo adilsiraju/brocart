@@ -1,1 +1,1 @@
-# brocart
+# brocart Ecommerce Django Project
