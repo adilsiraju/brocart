@@ -1,4 +1,4 @@
-# brocart Ecommerce Django Project
+# The Brocart Ecommerce Django Project
 
 This is a Django-based e-commerce application that demonstrates:
 
