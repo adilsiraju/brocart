@@ -1,4 +1,5 @@
 # Brocart (E-Commerce)
+![image](https://github.com/user-attachments/assets/69eb1880-192c-4c03-a332-829eb4c23338)
 
 Brocart is a minimal Django-based e-commerce application that demonstrates basic functionalities of an online store. It includes features for managing products, customers, and orders.
 
