@@ -14,7 +14,7 @@ class Product(models.Model):
     title = models.CharField(max_length=200)
     price = models.FloatField()
     description = models.TextField()
-    image = models.ImageField(upload_to='media/products/')
+    image = models.ImageField(upload_to='products/')
     
     # priority and delete_status fields
     priority = models.IntegerField(default=0)
