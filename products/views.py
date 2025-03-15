@@ -3,12 +3,12 @@ from django.shortcuts import render
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'pages/index.html')
 
 # Products list page
 def list_products(request):
-    return render(request, 'products.html')
+    return render(request, 'pages/products.html')
 
 # Product detail page
 def product_detail(request):
-    return render(request, 'product_detail.html')
+    return render(request, 'pages/product_detail.html')
