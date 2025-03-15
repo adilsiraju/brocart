@@ -31,7 +31,7 @@ def list_products(request):
         page = request.GET.get('page', 1)
 
     # Get all products
-    product_list = Product.objects.all()
+    product_list = Product.objects.order_by('-priority')
 
     # Create paginator object with product_list and 2 items per page
     product_paginator = Paginator(product_list, 4)
