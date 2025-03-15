@@ -47,5 +47,11 @@ def list_products(request):
     return render(request, 'pages/products.html', context)
 
 # Product detail page
-def product_detail(request):
-    return render(request, 'pages/product_detail.html')
+def product_detail(request, pk):
+
+    product = Product.objects.get(pk=pk)
+    context = {
+        'product' : product
+    }
+
+    return render(request, 'pages/product_detail.html', context)
