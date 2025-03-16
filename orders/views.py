@@ -52,7 +52,6 @@ def add_to_cart(request):
         # 3. If not found, creates new OrderedItem and returns (new_ordered_item, True  )
         ordered_item, created = OrderedItem.objects.get_or_create(
             product = product,
-            quantity = quantity,
             order = cart_obj
         )
 
@@ -66,3 +65,9 @@ def add_to_cart(request):
             ordered_item.save()
 
     return redirect ('cart')
+
+def remove_item_from_cart(request, pk):
+    item = OrderedItem.objects.get(pk = pk)
+    if item:
+        item.delete()
+    return redirect('cart')
