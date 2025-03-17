@@ -6,11 +6,14 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = [
         'owner',
         'order_status',
+        'created_at'
     ]
 
     search_fields = [
         'owner__name',
         'id',
     ]
+
+    
 
 admin.site.register(Order,OrderAdmin)
