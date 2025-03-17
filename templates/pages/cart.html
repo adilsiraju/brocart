@@ -5,19 +5,19 @@
 
         {% if messages %}
 
-        <div class="message">
+                <div class="message">
 
-        {% for message in messages %}
+                        {% for message in messages %}
 
-                <li class="{{ message.tags }}">{{ message }}</li>
+                                <li class="{{ message.tags }}">{{ message }}</li>
 
-        {% endfor %}
-        
-        </div>
+                        {% endfor %}
+                
+                </div>
 
         {% else %}
 
-        {% include 'sections/orders/cart_content.html' %}
+                {% include 'sections/orders/cart_content.html' %}
 
         {% endif %}
         
