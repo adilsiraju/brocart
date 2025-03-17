@@ -40,7 +40,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <button type="checkout" class="btn">Checkout</button>
+                        <form action="{% url 'checkout' %}" enctype="multipart/form-data" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="total" value="{% gettotal cart %}">
+                            <button type="submit" class="btn">Checkout</button>
+                        </form>
                     </td>
                 </tr>
             </tbody></table>

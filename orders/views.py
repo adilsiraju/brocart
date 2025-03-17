@@ -2,6 +2,7 @@ from django.shortcuts import render
 from . models import Order, OrderedItem
 from products.models import Product
 from django.shortcuts import redirect
+from django.contrib import messages
 
 # Create your views here.
 
@@ -70,4 +71,46 @@ def remove_item_from_cart(request, pk):
     item = OrderedItem.objects.get(pk = pk)
     if item:
         item.delete()
+    return redirect('cart')
+
+
+def checkout_cart(request):
+    if request.POST:
+
+        try:
+
+            # Get the current user
+            user = request.user
+            customer = user.customer_profile
+
+            # Get the total amount from the form
+            # This is the total amount to be paid by the customer
+            total = float(request.POST.get('total'))
+            
+            # Get the cart object for the customer
+            order_obj = Order.objects.get(
+                owner = customer,
+                order_status = Order.CART_STAGE
+            )
+
+            # Update the order status to ORDER_CONFIRMED
+            # This marks the order as confirmed and ready for processing
+            if order_obj:
+                order_obj.order_status = Order.ORDER_CONFIRMED
+                order_obj.total_amount = total
+                order_obj.save()
+
+                status_message = 'Order Confirmed!, Your items will be delivered soon'
+                messages.success(request, status_message)
+
+            # If the order is not found, display an error message
+            else:
+                status_message = 'Order not found'
+                messages.error(request, status_message)
+
+        # If an error occurs, display the error message
+        except Exception as e:
+            status_message = 'Error: ' + str(e)
+            messages.error(request, status_message)
+            
     return redirect('cart')

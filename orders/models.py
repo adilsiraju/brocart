@@ -27,6 +27,8 @@ class Order(models.Model):
 
     # Fields for Order
     owner = models.ForeignKey(Customer, related_name='orders', on_delete=models.SET_NULL, null = True)
+
+    
     
     # order_status fields
     order_status = models.IntegerField(choices=status_choices, default=CART_STAGE)
@@ -37,6 +39,9 @@ class Order(models.Model):
     # Timestamps
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return f'Order-{self.id}-{self.owner}'
 
 class OrderedItem(models.Model):
 
