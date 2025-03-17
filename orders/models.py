@@ -28,7 +28,7 @@ class Order(models.Model):
     # Fields for Order
     owner = models.ForeignKey(Customer, related_name='orders', on_delete=models.SET_NULL, null = True)
 
-    
+    total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     
     # order_status fields
     order_status = models.IntegerField(choices=status_choices, default=CART_STAGE)
