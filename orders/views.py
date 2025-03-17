@@ -3,6 +3,7 @@ from . models import Order, OrderedItem
 from products.models import Product
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -24,6 +25,23 @@ def show_cart(request):
     
     return render(request, 'pages/cart.html', context)
 
+@login_required(login_url='account')
+def show_orders(request):
+    
+    # Get the current user
+    user = request.user
+    customer = user.customer_profile
+    
+    all_orders = Order.objects.filter(owner = customer).exclude(order_status = Order.CART_STAGE)
+
+    context = {
+        'orders': all_orders
+    }
+    
+    return render(request, 'pages/orders.html', context)
+
+
+@login_required(login_url='account')
 def add_to_cart(request):
     if request.POST:
         # Get the current user
@@ -72,7 +90,6 @@ def remove_item_from_cart(request, pk):
     if item:
         item.delete()
     return redirect('cart')
-
 
 def checkout_cart(request):
     if request.POST:
